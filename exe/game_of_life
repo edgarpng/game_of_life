@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require "game_of_life"
+
+puts "Hello"
