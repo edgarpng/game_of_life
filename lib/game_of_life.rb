@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require_relative "game_of_life/version"
+require_relative "game_of_life/screen"
 
 module GameOfLife
-  class Error < StandardError; end
-  # Your code goes here...
+  Screen.new.start!
 end
