@@ -1,17 +1,19 @@
 class GameOfLife::Screen
-  REFRESH_RATE_IN_SECONDS = 2
+  REFRESH_RATE_IN_SECONDS = 0.5
   PIXEL_OFF = "⬛"
   PIXEL_ON = "⬜"
 
-  def initialize(width: 100, height: 50)
-    @width = width
-    @height = height
+  attr_reader :game
+
+  def initialize(game)
+    @game = game
   end
 
   def start!
     loop do
       clear
       draw
+      next_frame
       sleep(REFRESH_RATE_IN_SECONDS)
     end
   rescue Interrupt
@@ -23,10 +25,18 @@ class GameOfLife::Screen
   attr_reader :width, :height
 
   def draw
-    row = PIXEL_OFF * width
-    height.times do
-      puts row
+    board = game.board
+    board.map(&method(:to_pixel_value)).each_slice(board.row_size) do |row|
+      puts row.join
     end
+  end
+
+  def next_frame
+    game.tick
+  end
+
+  def to_pixel_value(cell)
+    cell ? PIXEL_ON : PIXEL_OFF
   end
 
   def clear

@@ -2,7 +2,9 @@
 
 require_relative "game_of_life/version"
 require_relative "game_of_life/screen"
+require_relative "game_of_life/game"
 
 module GameOfLife
-  Screen.new.start!
+  game = Game.random(width: 100, height: 100)
+  Screen.new(game).start!
 end
