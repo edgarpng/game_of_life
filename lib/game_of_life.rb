@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "game_of_life/version"
 require_relative "game_of_life/screen"
 require_relative "game_of_life/game"
 
